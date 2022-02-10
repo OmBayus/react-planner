@@ -13,11 +13,10 @@ for( let x in Lines ) catalog.registerElement( Lines[x] );
 for( let x in Holes ) catalog.registerElement( Holes[x] );
 for( let x in Items ) catalog.registerElement( Items[x] );
 
-
-// setTimeout(()=>{
-//     catalog.registerElement(test)
-//     console.log("success")
-// },10000)
+const items = JSON.parse(localStorage.getItem('items')) || [];
+items.forEach(item => {
+    catalog.registerElement(test(item))
+});
 
 
 

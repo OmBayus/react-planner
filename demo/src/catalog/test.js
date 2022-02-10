@@ -2,15 +2,15 @@ import React from 'react';
 import { BoxGeometry, MeshBasicMaterial, Mesh, BoxHelper } from 'three';
 import { ReactPlannerSharedStyle } from 'react-planner';
 
-export default {
-  name: 'Halı',
+export default (props)=>({
+  name: props.name,
   prototype: 'items',
 
   info: {
-    title: 'Halı',
-    tag: ['Halı'],
-    description: 'Halı',
-    image: 'http://www.homepera.com/Uploads/UrunResimleri/buyuk/bahariye-hali-ezgi-173x250-5810-beyaz--1d6-41.jpg'
+    title: props.name,
+    tag: [props.name],
+    description: props.name,
+    image: props.image
   },
 
   properties: {
@@ -23,7 +23,7 @@ export default {
       label: 'Width',
       type: 'length-measure',
       defaultValue: {
-        length: 100,
+        length: parseInt(props.width),
         unit: 'cm'
       }
     },
@@ -31,7 +31,7 @@ export default {
       label: 'Height',
       type: 'length-measure',
       defaultValue: {
-        length: 100,
+        length: parseInt(props.height),
         unit: 'cm'
       }
     },
@@ -95,4 +95,4 @@ export default {
 
     return Promise.resolve(mesh);
   }
-};
+});

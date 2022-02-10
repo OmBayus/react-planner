@@ -8,7 +8,7 @@ import CatalogTurnBackPageItem from './catalog-turn-back-page-item';
 import ContentContainer from '../style/content-container';
 import ContentTitle from '../style/content-title';
 import * as SharedStyle from '../../shared-style';
-import test from "./test"
+import AddItem from './AddItem';
 
 const containerStyle = {
   position: 'fixed',
@@ -212,12 +212,7 @@ export default class CatalogList extends Component {
             this.state.matchedElements.map(elem => <CatalogItem key={elem.name} element={elem}/>)
           }
           {currentCategory.label === "Add Item" && (
-            <div>
-              <button onClick={()=>{
-                this.context.catalog.registerElement(test)
-                console.log("Added a new item")
-              }}>New Item</button>
-            </div>
+            <AddItem/>
           )}
         </div>
       </ContentContainer>
