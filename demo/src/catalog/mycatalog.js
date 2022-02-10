@@ -13,10 +13,16 @@ for( let x in Lines ) catalog.registerElement( Lines[x] );
 for( let x in Holes ) catalog.registerElement( Holes[x] );
 for( let x in Items ) catalog.registerElement( Items[x] );
 
-catalog.registerElement(test)
+
+// setTimeout(()=>{
+//     catalog.registerElement(test)
+//     console.log("success")
+// },10000)
 
 
 
+
+catalog.registerCategory('Add Item', 'Add Item', [] );
 catalog.registerCategory('windows', 'Windows', [Holes.window, Holes.sashWindow, Holes.venetianBlindWindow, Holes.windowCurtain] );
 catalog.registerCategory('doors', 'Doors', [Holes.door, Holes.doorDouble, Holes.panicDoor, Holes.panicDoorDouble, Holes.slidingDoor] );
 

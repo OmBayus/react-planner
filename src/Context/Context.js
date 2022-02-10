@@ -6,7 +6,7 @@ export default function ContextProvider(props) {
 
     const [data, setData] = React.useState({})
     const [select,setSelect] = React.useState(null)
-    const [open,setOpen] = React.useState(false)
+    const [popup,setPopup] = React.useState(false)
 
     useEffect(()=>{
       document.addEventListener('contextmenu', e => {
@@ -25,7 +25,7 @@ export default function ContextProvider(props) {
     },[])
   
     return (
-      <Context.Provider value={{data:{data,setData},popup:{open,setOpen},select:{select,setSelect}}}>
+      <Context.Provider value={{data:{data,setData},popup:{open:popup,setOpen:setPopup},select:{select,setSelect}}}>
           {props.children}
       </Context.Provider>
     );

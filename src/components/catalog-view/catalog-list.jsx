@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 import CatalogItem from './catalog-item';
 import CatalogBreadcrumb from './catalog-breadcrumb';
 import CatalogPageItem from './catalog-page-item';
+import CatalogAddItem from "./catolog-add-item";
 import CatalogTurnBackPageItem from './catalog-turn-back-page-item';
 import ContentContainer from '../style/content-container';
 import ContentTitle from '../style/content-title';
 import * as SharedStyle from '../../shared-style';
+import test from "./test"
 
 const containerStyle = {
   position: 'fixed',
@@ -199,11 +201,24 @@ export default class CatalogList extends Component {
           {
             this.state.matchString === '' ? [
               turnBackButton,
-              categoriesToDisplay.map(cat => <CatalogPageItem key={cat.name} page={cat} oldPage={currentCategory}/>),
+              categoriesToDisplay.map(cat => {
+                if(cat.name === "Add Item") 
+                  return (<CatalogAddItem key={cat.name} page={{name:"Add Item",label:"Add Item"}} oldPage={currentCategory}/>)
+                return (<CatalogPageItem key={cat.name} page={cat} oldPage={currentCategory}/>)
+              
+            }),
               elementsToDisplay.map(elem => <CatalogItem key={elem.name} element={elem}/>)
             ] :
             this.state.matchedElements.map(elem => <CatalogItem key={elem.name} element={elem}/>)
           }
+          {currentCategory.label === "Add Item" && (
+            <div>
+              <button onClick={()=>{
+                this.context.catalog.registerElement(test)
+                console.log("Added a new item")
+              }}>New Item</button>
+            </div>
+          )}
         </div>
       </ContentContainer>
     )
