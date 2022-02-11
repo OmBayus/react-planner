@@ -1,5 +1,5 @@
 import {Catalog} from 'react-planner';
-import test from "./test"
+import newItem from "./newItem"
 
 let catalog = new Catalog();
 
@@ -15,7 +15,7 @@ for( let x in Items ) catalog.registerElement( Items[x] );
 
 const items = JSON.parse(localStorage.getItem('items')) || [];
 items.forEach(item => {
-    catalog.registerElement(test(item))
+    catalog.registerElement(newItem(item))
 });
 
 

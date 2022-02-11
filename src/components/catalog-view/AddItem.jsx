@@ -1,16 +1,33 @@
 import React, { useState } from "react"
+import { Button, TextField } from "@mui/material"
+import { useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from "yup";
+
+const schema = yup.object({
+    name: yup.string().required(),
+    width: yup.number().required(),
+    height: yup.number().required(),
+    image: yup.string()
+}).required();
+
 
 const AddItem = ()=>{
 
-    const [data,setData] = useState({name:"",width:"0",height:"0",image:""})
+    const { register, handleSubmit, formState: { errors } } = useForm({
+        resolver: yupResolver(schema),
+        defaultValues:{
+            name: "",
+            width: "100",
+            height: "100",
+            image: ""
+        }
+      });
 
-    const handleChange = (e)=>{
-        const {name,value} = e.target
-        setData(prevValue=>({...prevValue,[name]:value}))
-    }
 
-    const handleSubmit = ()=>{
+    const onSubmit = (data) => {
         const items = JSON.parse(localStorage.getItem("items"))
+        data.image = data.image === "" ? `https://via.placeholder.com/${data.width}x${data.height}` : data.image
         if(items){
             items.push(data)
             localStorage.setItem('items', JSON.stringify(items));
@@ -18,23 +35,50 @@ const AddItem = ()=>{
         else{
             localStorage.setItem('items', JSON.stringify([data]));
         }
-    }
+        location.reload();
+    };
 
     return(
-        <form onSubmit={handleSubmit}>
-            <div style={{margin:"10px 0"}}>
-                <input name="name" value={data.name} onChange={handleChange} type="text" placeholder="Name"/>
+        <form onSubmit={handleSubmit(onSubmit)} style={{width:"50%"}}>
+            <div>
+                    <TextField
+                        sx={{margin:"1em 0",width:"100%"}}
+                        error={errors.name !== undefined}
+                        label="Name"
+                        helperText={errors.name === undefined ? "" : errors.name.message}
+                        {...register("name")}
+                    />
             </div>
-            <div style={{margin:"10px 0"}}>
-                <input name="width" value={data.width} onChange={handleChange} type="text" placeholder="Width"/>
+            <div>
+                    <TextField
+                        sx={{margin:"1em 0",width:"100%"}}
+                        error={errors.width !== undefined}
+                        label="Width"
+                        helperText={errors.width === undefined ? "" : errors.width.message}
+                        {...register("width")}
+                    />
             </div>
-            <div style={{margin:"10px 0"}}>
-                <input name="height" value={data.height} onChange={handleChange} type="text" placeholder="Height"/>
+            <div>
+                    <TextField
+                        sx={{margin:"1em 0",width:"100%"}}
+                        error={errors.height !== undefined}
+                        label="Height"
+                        helperText={errors.height === undefined ? "" : errors.height.message}
+                        {...register("height")}
+                    />
             </div>
-            <div style={{margin:"10px 0"}}>
-                <input name="image" value={data.image} onChange={handleChange} type="text" placeholder="Image Url"/>
+            <div>
+                    <TextField
+                        sx={{margin:"1em 0",width:"100%"}}
+                        error={errors.image !== undefined}
+                        label="Image Url"
+                        helperText={errors.image === undefined ? "": errors.image.message}
+                        {...register("image")}
+                    />
             </div>
-            <button type="submit">Save</button>
+            <div style={{display:"flex",justifyContent:"flex-end"}}>
+                <Button variant="contained" size="large" type="submit">Save</Button>
+            </div>
         </form>
     )
 }

@@ -7,7 +7,7 @@
   "jsnext:main": "es/index.js",
   "scripts": {
     "start": "webpack-dev-server --inline --config demo/webpack.config.js --port 9000 --mode development",
-    "start-build":"open http://localhost:3000 && serve -s demo/dist",
+    "start-build": "open http://localhost:3000 && serve -s demo/dist",
     "build-demo": "webpack --config demo/webpack.config.js --mode production",
     "build-commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
     "build-es": "cross-env BABEL_ENV=es babel src --copy-files --out-dir es",
@@ -68,6 +68,7 @@
   "dependencies": {
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
+    "@hookform/resolvers": "^2.8.8",
     "@mapbox/react-range": "0.0.7",
     "@mui/material": "^5.4.1",
     "area-polygon": "1.0.1",
@@ -79,12 +80,14 @@
     "polylabel": "1.0.2",
     "prop-types": "15.7.2",
     "react": "^17.0.2",
+    "react-hook-form": "^7.26.1",
     "react-icons": "3.5.0",
     "react-redux": "5.0.7",
     "react-svg-pan-zoom": "2.18.0",
     "react-tabs": "3.0.0",
     "redux": "4.0.1",
-    "shortid": "2.2.14"
+    "shortid": "2.2.14",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "babel-cli": "6.26.0",

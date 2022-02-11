@@ -31,7 +31,7 @@ export default (props)=>({
       label: 'Height',
       type: 'length-measure',
       defaultValue: {
-        length: parseInt(props.height),
+        length: 100,
         unit: 'cm'
       }
     },
@@ -39,7 +39,7 @@ export default (props)=>({
       label: 'Depth',
       type: 'length-measure',
       defaultValue: {
-        length: 100,
+        length: parseInt(props.height),
         unit: 'cm'
       }
     },
