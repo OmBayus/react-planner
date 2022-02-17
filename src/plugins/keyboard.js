@@ -87,7 +87,7 @@ export default function keyboard() {
           store.dispatch(pasteProperties());
           break;
         }
-        case KEYBOARD_BUTTON_CODE.CTRL:
+        case KEYBOARD_BUTTON_CODE.SHIFT:
         {
           store.dispatch(setAlterateState());
           break;
@@ -108,7 +108,7 @@ export default function keyboard() {
             store.dispatch(toggleSnap(state.snapMask.merge(state.snapMask.get('tempSnapConfiguartion'))));
           break;
         }
-        case KEYBOARD_BUTTON_CODE.CTRL:
+        case KEYBOARD_BUTTON_CODE.SHIFT:
         {
           store.dispatch(setAlterateState());
           break;

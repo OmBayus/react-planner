@@ -307,6 +307,7 @@ export const KEYBOARD_BUTTON_CODE = {
   C: 67,
   V: 86,
   CTRL: 17,
+  SHIFT:16,
   ENTER: 13,
   TAB: 9
 };
